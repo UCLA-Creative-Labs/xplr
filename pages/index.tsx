@@ -1,66 +1,40 @@
-import Head from 'next/head';
+import { GetStaticProps } from 'next';
 import React from 'react';
+import Layout from '../components/Layout';
 import styles from '../styles/Home.module.scss';
+import { IPost, ITeamMember } from '../util';
+import { getPosts, getTeam } from '../util/node';
 
-export default function Home(): JSX.Element {
+export interface HomeProps {
+  team: ITeamMember[];
+  posts: IPost[];
+}
+
+export default function Home(props: HomeProps): JSX.Element {
+  const {team, posts} = props;
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout>
+      <h2>Team</h2>
+      <pre>{team.map(m => JSON.stringify(m, null, 2))}</pre>
+      <br />
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+      <h2>Posts</h2>
+      <pre>{posts.map(p => JSON.stringify(p, null, 2))}</pre>
+    </Layout>
   );
+}
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  const team = getTeam();
+  const posts = getPosts();
+
+  console.log(team);
+  console.log(posts.map(p => JSON.stringify(p, null, 2)));
+
+  return {
+    props: {
+      team: team.map(m => JSON.parse(JSON.stringify(m, null, 2)) as ITeamMember),
+      posts: posts.map(p =>  JSON.parse(JSON.stringify(p, null, 2)) as IPost),
+    }
+  }
 }
