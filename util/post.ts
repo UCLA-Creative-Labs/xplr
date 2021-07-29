@@ -1,6 +1,4 @@
-import { getMemberBySlug } from "./node/markdown";
-import { kebabify } from "./string";
-import { TeamMember } from "./team-member";
+import { TeamMember } from './team-member';
 
 export interface IPost extends PostProps {
   readonly author: TeamMember;
@@ -34,9 +32,7 @@ export class Post implements IPost {
     this.content = content;
   }
 
-  get author() {
+  get author(): TeamMember {
     return this._author;
   }
-
-  
 }

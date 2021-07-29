@@ -1,7 +1,6 @@
 import { GetStaticProps } from 'next';
 import React from 'react';
 import Layout from '../components/Layout';
-import styles from '../styles/Home.module.scss';
 import { IPost, ITeamMember } from '../util';
 import { getPosts, getTeam } from '../util/node';
 
@@ -28,13 +27,10 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const team = getTeam();
   const posts = getPosts();
 
-  console.log(team);
-  console.log(posts.map(p => JSON.stringify(p, null, 2)));
-
   return {
     props: {
       team: team.map(m => JSON.parse(JSON.stringify(m, null, 2)) as ITeamMember),
       posts: posts.map(p =>  JSON.parse(JSON.stringify(p, null, 2)) as IPost),
-    }
-  }
-}
+    },
+  };
+};
