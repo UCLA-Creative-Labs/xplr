@@ -2,7 +2,7 @@
 title: "Next.js: The future of JavaScript Frameworks"
 description: Next.js is a powerful JavaScript framework that takes everything we already love about React and brings it up to eleven.
 author: Bryan Pan
-tags: javascript web-dev tooling
+tags: [javascript, web-dev, tooling]
 slug: next-js
 ---
 

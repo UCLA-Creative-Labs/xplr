@@ -11,6 +11,7 @@ export interface HomeProps {
 
 export default function Home(props: HomeProps): JSX.Element {
   const {team, posts} = props;
+
   return (
     <Layout>
       <h2>Team</h2>
@@ -29,8 +30,8 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 
   return {
     props: {
-      team: team.map(m => JSON.parse(JSON.stringify(m, null, 2)) as ITeamMember),
-      posts: posts.map(p =>  JSON.parse(JSON.stringify(p, null, 2)) as IPost),
+      team: team.map(member => member.toJson() as ITeamMember),
+      posts: posts.map(post => post.toJson() as IPost),
     },
   };
 };

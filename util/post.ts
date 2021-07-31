@@ -1,7 +1,6 @@
-import { TeamMember } from './team-member';
+import { JsonSerializable } from './private/json-serializable';
 
 export interface IPost extends PostProps {
-  readonly author: TeamMember;
   readonly slug: string;
   readonly content: string;
 }
@@ -9,30 +8,30 @@ export interface IPost extends PostProps {
 export interface PostProps {
   readonly title: string;
   readonly description: string;
-  readonly authorName: string;
+  readonly author: string;
   readonly tags: string[];
 }
 
-export class Post implements IPost {
+export class Post extends JsonSerializable implements IPost {
+
+  public static fromInterface(data: IPost): Post {
+    return new Post(data.slug, data.content, data);
+  }
+
   public readonly title: string;
   public readonly description: string;
-  public readonly authorName: string;
+  public readonly author: string;
   public readonly tags: string[];
   public readonly slug: string;
-
   public readonly content: string;
-  private _author?: TeamMember;
 
   constructor(id: string, content: string, props: PostProps) {
+    super();
     this.title = props.title;
     this.description = props.description;
-    this.authorName = props.authorName;
+    this.author = props.author;
     this.tags = props.tags;
     this.slug = id;
     this.content = content;
-  }
-
-  get author(): TeamMember {
-    return this._author;
   }
 }
