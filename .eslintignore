@@ -8,8 +8,6 @@ yarn.lock
 *.scss
 *.js
 
-!.eslintrc.js
-
 node_modules/
 dist/
 public/
