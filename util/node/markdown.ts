@@ -1,8 +1,8 @@
 import fs from 'fs';
 import { resolve } from 'path';
 import matter from 'gray-matter';
-import { IPost, Post, PostProps} from '../post';
-import { ITeamMember, TeamMember, TeamMemberProps } from '../team-member';
+import { Post, PostProps} from '../post';
+import { TeamMember, TeamMemberProps } from '../team-member';
 
 const POST_DIR = resolve(process.cwd(), '_posts');
 const TEAM_DIR = resolve(process.cwd(), '_team');

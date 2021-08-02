@@ -1,4 +1,4 @@
-import { JsonSerializable } from "./private/json-serializable";
+import { JsonSerializable } from './private/json-serializable';
 
 export interface ITeamMember extends TeamMemberProps {
   readonly slug: string;
@@ -9,6 +9,7 @@ export interface TeamMemberProps {
   readonly name: string;
   readonly year: number;
   readonly major: string;
+  readonly pronouns: string;
 }
 
 export class TeamMember extends JsonSerializable implements ITeamMember {
@@ -21,6 +22,7 @@ export class TeamMember extends JsonSerializable implements ITeamMember {
   public readonly name: string;
   public readonly year: number;
   public readonly major: string;
+  public readonly pronouns: string;
   public readonly bio: string;
 
   constructor(id: string, bio: string, props: TeamMemberProps) {
@@ -29,6 +31,7 @@ export class TeamMember extends JsonSerializable implements ITeamMember {
     this.name = props.name;
     this.year = props.year;
     this.major = props.major;
+    this.pronouns = props.pronouns;
 
     this.bio = bio;
   }
