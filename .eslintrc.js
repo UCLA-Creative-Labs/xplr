@@ -23,14 +23,24 @@ module.exports = {
     'react',
     '@typescript-eslint',
   ],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
   rules: {
     'linebreak-style': [ 'error', 'unix' ],
 
+    // Always add a trailing new line to the end of a file (clean diffs)
+    'eol-last': [ 'error', 'unix' ],
+
+    // Respect javascript modules
     '@typescript-eslint/no-require-imports': [ 'error' ],
 
+    // Variables should be used
     '@typescript-eslint/no-unused-vars': [
       'error',
-      { argsIgnorePattern: '^_' }
+      { argsIgnorePattern: '^_' },
     ],
 
     // 2 space indentation
