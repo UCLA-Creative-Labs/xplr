@@ -5,7 +5,7 @@ major: Computer Science
 pronouns: he/him
 ---
 
-[!A beautiful image of Bryan Pan](../public/team/bryan-pan.png)
+[!A beautiful image of Bryan Pan](../public/team/bryan-pan.jpg)
 
 # Bryan Pan
 
