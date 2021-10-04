@@ -55,14 +55,14 @@ function getItemBySlug<T, TProps>(slug: string, dir: string, create: (s: string,
  * @returns The Post associated with the given slug
  */
 export function getPostBySlug(slug: string): Post {
-  return getItemBySlug(slug, POST_DIR, (s: string, c: string, p: PostProps) => new Post(s, c, p));
+  return getItemBySlug(slug, POST_DIR, createPost);
 }
 
 /**
  * @returns The team member associated with the given slug
  */
 export function getMemberBySlug(slug: string): TeamMember {
-  return getItemBySlug(slug, TEAM_DIR, (s: string, c: string, p: TeamMemberProps) => new TeamMember(s, c, p));
+  return getItemBySlug(slug, TEAM_DIR, createTeamMember);
 }
 
 /**
@@ -89,5 +89,3 @@ export function getPosts(): Post[] {
 export function getTeam(): TeamMember[] {
   return getAllOf<TeamMember, TeamMemberProps>(TEAM_DIR, createTeamMember);
 }
-
-
