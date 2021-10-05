@@ -13,6 +13,8 @@
     "no-lock": "scripts/noPackageLock.sh"
   },
   "dependencies": {
+    "apollo-server-micro": "^2.19.2",
+    "graphql": "^15.6.0",
     "gray-matter": "^4.0.3",
     "next": "10.0.9",
     "react": "17.0.2",
