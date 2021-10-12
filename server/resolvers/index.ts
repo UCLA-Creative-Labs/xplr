@@ -1,6 +1,6 @@
-import { IPost, ITeamMember, kebabify } from "../../util";
-import { getMemberBySlug, getPosts, getTeam } from "../../util/node";
-import { _Post } from "./types";
+import { ITeamMember, kebabify } from '../../util';
+import { getMemberBySlug, getPosts, getTeam } from '../../util/node';
+import { LinkedPost } from './types';
 
 export const Query = {
   hi: (): string => {
@@ -9,7 +9,7 @@ export const Query = {
   allTeamMembers: (): ITeamMember[] => {
     return getTeam();
   },
-  allPosts: (): _Post[] => {
+  allPosts: (): LinkedPost[] => {
     const posts = getPosts();
 
     return posts.map(post => {

@@ -1,8 +1,8 @@
 import fs from 'fs';
 import { resolve } from 'path';
 import matter from 'gray-matter';
-import { IPost, Post, PostProps} from '../post';
-import { ITeamMember, TeamMember, TeamMemberProps } from '../team-member';
+import { Post, PostProps} from '../post';
+import { TeamMember, TeamMemberProps } from '../team-member';
 
 const POST_DIR = resolve(process.cwd(), '_posts');
 const TEAM_DIR = resolve(process.cwd(), '_team');
@@ -79,13 +79,13 @@ function getAllOf<T, TProps>(dir: string, create: (s: string, c: string, p: TPro
 /**
  * @returns all posts
  */
-export function getPosts(): IPost[] {
-  return getAllOf<IPost, PostProps>(POST_DIR, createPost);
+export function getPosts(): Post[] {
+  return getAllOf<Post, PostProps>(POST_DIR, createPost);
 }
 
 /**
  * @returns all team members
  */
-export function getTeam(): ITeamMember[] {
-  return getAllOf<ITeamMember, TeamMemberProps>(TEAM_DIR, createTeamMember);
+export function getTeam(): TeamMember[] {
+  return getAllOf<TeamMember, TeamMemberProps>(TEAM_DIR, createTeamMember);
 }

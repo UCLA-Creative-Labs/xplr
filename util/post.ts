@@ -1,5 +1,4 @@
 import { JsonSerializable } from './private/json-serializable';
-import { ITeamMember } from './team-member';
 
 export interface IPost extends PostProps {
   readonly slug: string;
