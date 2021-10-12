@@ -89,5 +89,3 @@ export function getPosts(): Post[] {
 export function getTeam(): TeamMember[] {
   return getAllOf<TeamMember, TeamMemberProps>(TEAM_DIR, createTeamMember);
 }
-
-
