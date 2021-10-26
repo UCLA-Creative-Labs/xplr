@@ -6,9 +6,11 @@ export const Query = {
   hi: (): string => {
     return 'Hello World!';
   },
+
   allTeamMembers: (): ITeamMember[] => {
     return getTeam();
   },
+
   allPosts: (): LinkedPost[] => {
     const posts = getPosts();
 

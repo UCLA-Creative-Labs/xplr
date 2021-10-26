@@ -1,15 +1,19 @@
+import { useQuery } from '@apollo/client';
 import { GetStaticProps } from 'next';
 import React from 'react';
 import Layout from '../components/Layout';
-import { IPost, ITeamMember } from '../util';
-import { getPosts, getTeam } from '../util/node';
+import { LinkedPost } from '../server/resolvers/types';
+import { ITeamMember } from '../util';
+import { allPost, allTeam } from '../util/graphql';
+
+import { gqlFetch } from '../util/node';
 
 export interface HomeProps {
   team: ITeamMember[];
-  posts: IPost[];
+  posts: LinkedPost[];
 }
 
-export default function Home(props: HomeProps): JSX.Element {
+export default function Home(props: HomeProps): React.ReactNode {
   const {team, posts} = props;
 
   return (
@@ -24,14 +28,16 @@ export default function Home(props: HomeProps): JSX.Element {
   );
 }
 
+
+
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const team = getTeam();
-  const posts = getPosts();
+  const {data: team} = await gqlFetch(allTeam);
+  const {data: posts} = await gqlFetch(allPost);
 
   return {
     props: {
-      team: team.map(member => member.toJson() as ITeamMember),
-      posts: posts.map(post => post.toJson() as IPost),
+      team: team?.allTeamMembers ?? [],
+      posts: posts?.allPosts ?? [],
     },
   };
 };
