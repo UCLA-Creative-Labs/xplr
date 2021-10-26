@@ -2,7 +2,7 @@
  * Run a graphql fetch.
  *
  * @param query The query to perform on the graphql engine
- * @returns 
+ * @returns
  */
 export const gqlFetch = async (query: string) => {
   const res = await fetch('http://localhost:3000/api/graphql', {
@@ -14,4 +14,4 @@ export const gqlFetch = async (query: string) => {
   });
   const {data, error} = await res.json();
   return {data, error};
-}
+};

@@ -1,4 +1,3 @@
-import { useQuery } from '@apollo/client';
 import { GetStaticProps } from 'next';
 import React from 'react';
 import Layout from '../components/Layout';
@@ -27,7 +26,6 @@ export default function Home(props: HomeProps): React.ReactNode {
     </Layout>
   );
 }
-
 
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
